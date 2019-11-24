@@ -14,7 +14,7 @@ export default class TextAreaComponent extends TextFieldComponent {
       rows: 3,
       wysiwyg: false,
       editor: '',
-      inputFormat: 'html',
+      inputFormat: 'plain',
       validate: {
         minWords: '',
         maxWords: ''
@@ -91,8 +91,9 @@ export default class TextAreaComponent extends TextFieldComponent {
     info.attr = info.attr || {};
     info.content = value;
     if (this.options.readOnly || this.disabled) {
+      const v = `<pre>${value.trim()}</pre>`;
       return this.renderTemplate('well', {
-        children: value,
+        children: v,
         nestedKey: this.key,
         value
       });

@@ -511,14 +511,15 @@ export default class FileComponent extends Field {
           if (this.component.privateDownload) {
             file.private = true;
           }
-          const { storage, url, options = {} } = this.component;
+          const { storage, url, options = '' } = this.component;
+          const url1 = fileService.base + url;
           const fileKey = this.component.fileKey || 'file';
           fileService.uploadFile(storage, file, fileName, dir, evt => {
             fileUpload.status = 'progress';
             fileUpload.progress = parseInt(100.0 * evt.loaded / evt.total);
             delete fileUpload.message;
             this.redraw();
-          }, url, options, fileKey)
+          }, url1, options, fileKey)
             .then(fileInfo => {
               const index = this.statuses.indexOf(fileUpload);
               if (index !== -1) {

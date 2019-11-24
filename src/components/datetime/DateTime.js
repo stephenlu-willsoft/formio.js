@@ -83,6 +83,7 @@ export default class DateTimeComponent extends Input {
       enableTime: _.get(this.component, 'enableTime', true),
       noCalendar: !_.get(this.component, 'enableDate', true),
       format: this.component.format,
+      dateFormat: this.component.format,
       hourIncrement: _.get(this.component, 'timePicker.hourStep', 1),
       minuteIncrement: _.get(this.component, 'timePicker.minuteStep', 5),
       time_24hr: time24hr,
@@ -128,7 +129,8 @@ export default class DateTimeComponent extends Input {
   }
 
   formatValue(input) {
-    const result = moment.utc(input).toISOString();
+    //const result = moment.utc(input).toISOString();
+    const result = moment.utc(input).format(this.component.format);
     return result === 'Invalid date' ? input : result;
   }
 

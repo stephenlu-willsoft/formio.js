@@ -82,7 +82,7 @@ export default class Component extends Element {
       /**
        * If the component should be cleared when hidden.
        */
-      clearOnHide: true,
+      clearOnHide: false,
 
       /**
        * This will refresh this component options when this field changes.
@@ -200,6 +200,8 @@ export default class Component extends Element {
       renderMode: 'form',
       attachMode: 'full'
     }, options || {}));
+
+    this.id = component && component.id ? component.id : this.id;
 
     // Save off the original component.
     this.originalComponent = _.cloneDeep(component);
